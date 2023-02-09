@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "The effective username is: root"
+whoami
