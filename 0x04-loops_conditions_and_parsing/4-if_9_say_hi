@@ -9,7 +9,7 @@ do
 		echo "Best School"
 		echo "Hi"
 	else
-		echo "Best Schol"
+		echo "Best School"
 	fi
 	((counter++))
 done
