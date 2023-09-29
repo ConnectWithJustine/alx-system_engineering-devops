@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# A script that stops 4-to_infinty... process
+
+pid=$(pgrep -f "beyond")
+if [ -n "$pid" ]; then
+	kill "$pid"
+fi
