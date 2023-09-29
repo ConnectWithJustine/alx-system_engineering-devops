@@ -2,4 +2,4 @@
 # A bash script that displays a list of currently
 # running processes
 
-ps auxf
+ps -a -x -u -f
