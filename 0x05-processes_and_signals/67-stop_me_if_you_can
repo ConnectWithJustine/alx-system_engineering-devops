@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # This script kills 4-to_infinity_and_beyond
 # without kill or killall
-pkill -f beyond
+pkill -f "highlander"

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# A bash script that display To ininity ... with a sleep 2
+
+# Set up a trap for the SIGTERM signal (number 15)
+trap 'echo "I am invincible!!!"' 15
+while true; do
+	echo "To infinity and beyond"
+	sleep 2
+done
