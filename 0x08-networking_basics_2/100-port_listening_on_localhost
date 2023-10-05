@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# A bash script that listens on port 98 on localhost
+if [ "$(id -u)" != "0" ]; then
+	echo "Please run this script as root."
+	exit 1
+fi
+
+nc -l -p 98 -s 127.0.0.1
