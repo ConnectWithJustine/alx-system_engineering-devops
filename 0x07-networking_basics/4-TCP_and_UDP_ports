@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# A bash script that displays listening ports
+
+if [ "$(id -u)" != "0" ]; then
+	echo "Please run this script as root to display PID and program names"
+	exit 1
+fi
+
+netstat --listening --program
