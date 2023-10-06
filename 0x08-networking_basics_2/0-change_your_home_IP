@@ -5,7 +5,11 @@ if [ "$(id -u)" != "0" ]; then
 	exit 1
 fi
 
-echo "127.0.0.2 localhost" > /etc/hosts
-echo "8.8.8 facebook.com" >> /etc/hosts
+sed -i "s/127.*.*.* localhost/127.0.0.2 localhost/" /etc/hosts
 
-echo "Configuration complete: localhost now resolves"
+if grep -Fxq "facebook.com" /etc/hosts
+then
+	sed -i "s/*.*.*.* facebook.com/8.8.8.8 facebook.com/" /etc/hosts
+else
+	sed -i '1s/^/8.8.8.8 facebook\n/' /etc/hosts
+fi
