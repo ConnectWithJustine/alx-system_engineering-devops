@@ -1,3 +1,5 @@
+# Using Puppet to create a file in tmp
+
 file { 'school':
   ensure  => present,
   mode    => '0744',
