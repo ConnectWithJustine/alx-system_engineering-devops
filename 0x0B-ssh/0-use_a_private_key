@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # A Bash script that uses ssh to connect server usin the private key
 # echo "ssh public key" >> ~/.sssh/authorized_keys
-ssh -i ~/.ssh/school ubuntu@100.26.136.90
+ssh -i ~/.ssh/school ubuntu@3.84.237.21
