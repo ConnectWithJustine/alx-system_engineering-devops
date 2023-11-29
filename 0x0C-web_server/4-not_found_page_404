@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # setting up 404 error code page
 
-apt-get update -y
-apt-get install nginx -y
+sudo apt-get update -y
+sudo apt-get install nginx -y
 echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
-sed -i "46i rewrite ^/redirect_me https://github.com/ugwujustine permanent;" /etc/nginx/site-enable/default
+sed -i "46i rewrite ^/redirect_me https://github.com/ugwujustine permanent;" /etc/nginx/sites-enable/default
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
 sed -i "46i error_page 404 /custom_404.html;" /etc/nginx/sites-available/default
-service nginx restart
+sudo service nginx restart
