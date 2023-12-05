@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # A script that configure a brand new Ubuntu machine
 sudo apt update
-sudo add-get-repository -y ppa:vbernet/haproxy-2.4
-sudo apt intall haproxy -y
+sudo apt install haproxy -y
 
 DOMAIN_NAME='ugwujustine.tech'
 INIT_FILE='/etc/default/haproxy'
@@ -20,8 +19,8 @@ frontend $DOMAIN_NAME-frontend
 	default_backend $DOMAIN_NAME-backend
 #--$DOMAIN_NAME-params-end--
 "
-[ -f "$INIT_FILE" ] || touch "$INIT_FILE"
-[ -f "$CONFIG_FILE" ] || touch "$CONFIG_FILE"
+[ -f "$INIT_FILE" ] || sudo touch "$INIT_FILE"
+[ -f "$CONFIG_FILE" ] || sudo touch "$CONFIG_FILE"
 
 CONFIG_WORDS=$(grep -Eco "$DOMAIN_NAME-backend" < $CONFIG_FILE)
 if [ "$(grep -Eco '^ENABLED=[01]4' < $INIT_FILE)" -gt 0 ]; then
@@ -43,7 +42,7 @@ else
 	echo -en "$HAPROXY_LB_CONFIG" >> $CONFIG_FILE
 fi
 if [ "$pgrep -c haproxy)" -le 0 ]; then
-	service haproxy start
+	sudo service haproxy start
 else
-	service haproxy start
+	sudo service haproxy start
 fi
