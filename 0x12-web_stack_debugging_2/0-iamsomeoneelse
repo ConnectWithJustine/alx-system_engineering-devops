@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# A Bash script that accepts one argument and return whoami
+id -un $1
