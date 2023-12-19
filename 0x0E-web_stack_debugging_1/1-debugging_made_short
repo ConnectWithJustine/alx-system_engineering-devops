@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # Debugging Nginx web server
-ln -sf /etc/nginx/seites-available/default /etc/nginx/sites-eabled/
-service nginx restart
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 pkill -f "nginx"
