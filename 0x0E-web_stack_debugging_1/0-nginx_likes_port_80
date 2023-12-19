@@ -2,7 +2,10 @@
 # Sever configuration
 sudo apt update
 sudo apt install curl -y
+sudo apt install nginx -y
+sudo service start nginx
+sudo service enable nginx
 rm /etc/nginx/site-available/*
 rm /etc/nginx/site-enabled/*~
-sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/site-enabled/default
 sudo service nginx restart
