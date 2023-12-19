@@ -1,3 +1,11 @@
 #!/usr/bin/env bash
 # A Bash script that accepts one argument and return whoami
-id -un $1
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <username>'
+  exit 1
+fi
+
+username="$1"
+
+sudo -u "$username" whoami
