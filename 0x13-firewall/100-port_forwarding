@@ -8,11 +8,12 @@
 #   ufw-before-forward
 #
 
-# port forwarding
+# port forwarding 
 *nat
 :PREROUTING ACCEPT [0:0]
 -A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
 COMMIT
+# end port forwarding
 
 # Don't delete these required lines, otherwise there will be errors
 *filter
@@ -80,3 +81,6 @@ COMMIT
 # don't delete the 'COMMIT' line or these rules won't be processed
 COMMIT
 
+=======
+# end of port forwarding
+>>>>>>> 84ce48d615a2b47fa646e06f9d226f3b3c685c0e
