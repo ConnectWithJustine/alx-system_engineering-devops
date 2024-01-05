@@ -2,7 +2,7 @@
 '''
 Python script that returns information using REST API
 '''
-from requests import get
+import requests
 from sys import argv
 
 
@@ -10,10 +10,10 @@ if __name__ == "__main__":
     if len(argv) > 1:
         user = argv[1]
         url = "https://jsonplaceholder.typicode.com/"
-        req = get(f"{url}users/{user}")
+        req = requests.get(f"{url}users/{user}")
         name = req.json().get("name")
         if name is not None:
-            json_req = get(
+            json_req = requests.get(
                 f"{url}todos?userId={user}").json()
             all_task = len(json_req)
             completed_task = []
