@@ -2,9 +2,9 @@
 '''
     Python script that export data in the CSV format
 '''
+import csv
 import requests
 import sys
-import csv
 
 
 def FETCH_EMPLOYEE_TODO_PROGRESS(empId):
