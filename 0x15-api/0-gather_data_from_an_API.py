@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Python script that returns information using REST API
+Python script that returns information using REST APi
 '''
 import requests
 from sys import argv
