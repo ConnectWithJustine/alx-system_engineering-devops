@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 '''
-    Python script that returns information using REST API
+    Python script that export data in the CSV format
 '''
 import requests
 import sys
+import csv
 
 
 def FETCH_EMPLOYEE_TODO_PROGRESS(empId):
-    if empId == 0:
-        sys.exit(1)
     # API endpoint for fetching user data
     USER_URL = f'https://jsonplaceholder.typicode.com/users/{empId}'
     # API endpoint for fetching TODO data
@@ -24,16 +23,31 @@ def FETCH_EMPLOYEE_TODO_PROGRESS(empId):
 
     # Extracting relevant information
     EMPLOYEE_NAME = USER_DATA['name']
+    USER_ID = USER_DATA['id']
     TOTAL_TASKS = len(TODO_DATA)
     COMPLETED_TASKS = [task for task in TODO_DATA if task['completed']]
 
-    # Displaying the progress
-    print(f"Employee {EMPLOYEE_NAME} is done with "
-          f"tasks({len(COMPLETED_TASKS)}/{TOTAL_TASKS}):")
+    # Exporting to CSV
+    CSV_FILE_NAME = f"{USER_ID}.csv"
+    with open(CSV_FILE_NAME, mode='w', newline='') as csv_file:
+        fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS',
+                      'TASK_TITLE']
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
-    # Displaying titles of completed tasks
-    for task in COMPLETED_TASKS:
-        print(f"\t{task['title']}")
+        # Writing CSV header
+        writer.writeheader()
+
+        # Writing CSV rows
+        for task in TODO_DATA:
+            writer.writerow({
+                'USER_ID': USER_ID,
+                'USERNAME': EMPLOYEE_NAME,
+                'TASK_COMPLETED_STATUS': 'completed' if task['completed']
+                else 'not completed',
+                'TASK_TITLE': task['title']
+            })
+
+    print(f"\nData exported to {CSV_FILE_NAME}")
 
 
 if __name__ == "__main__":
