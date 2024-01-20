@@ -13,34 +13,16 @@ def top_ten(subreddit):
         A function that queries the reddit api and prints the
         titles of the firs 10 hot posts listed for a given subreddit
     """
-    # Reddit API endpoint for getting the top posts of a subreddit
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
+    req = requests.get(
+        "https://www.reddit.com/r/{}/hot.json".format(subreddit),
+        headers={"User-Agent": "Custom"},
+        params={"limit": 10},
+    )
 
-    # Set a custom User-Agent to avoid potential issues
-    headers = {'User-Agent': '/u/alx API Python for Holberton School'}
-
-    try:
-        # Make a GET request to the Reddit API
-        response = requests.get(url, headers=headers)
-
-        # Check if the request was successful (status code 200)
-        if response.status_code == 200:
-            # Parse the JSON response
-            subreddit_data = response.json()
-
-            # Extract and print the titles of the first 10 hot posts
-            for post in subreddit_data['data']['children']:
-                print(post['data']['title'])
-
-        elif response.status_code == 404:
-            # Invalid subreddit (not found)
-            print(
-                    f"Subreddit '{subreddit}' not found. "
-                    "Unable to retrieve posts.")
-        else:
-            # Handle other HTTP error codes if needed
-            print(f"Error: {response.status_code}. Unable to retrieve posts.")
-
-    except Exception as e:
-        # Handle any exceptions that may occur during the request
-        print(f"An error occurred: {e}. Unable to retrieve posts.")
+    if req.status_code == 200:
+        for get_data in req.json().get("data").get("children"):
+            dat = get_data.get("data")
+            title = dat.get("title")
+            print(title)
+    else:
+        print(None)
