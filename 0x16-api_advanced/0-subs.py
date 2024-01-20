@@ -27,5 +27,9 @@ def number_of_subscribers(subreddit):
 
     if response.status_code == 200:
         return response.json()["data"]["subscribers"]
+    elif response.status_code == 404:
+        print(f"Subreddit '{subreddit}' not found.")
+        return 0
     else:
+        print(f"Error: {response.status_code}")
         return 0
