@@ -1,0 +1,13 @@
+[Unit]
+Description=AirBnB clone v2
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/AirBnB_clone_v2/web_flask
+Environment="PATH=/usr/local/bin"
+ExecStart=/usr/local/bin/gunicorn --workers 3 --bind unix:0-hello_route.sock -m 007 0-hello_route:app
+
+[Install]
+WantedBy=multi-user.target
