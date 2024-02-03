@@ -32,7 +32,7 @@ User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/AirBnB_clone_v2/web_flask
 Environment="PATH=/usr/local/bin"
-ExecStart=/usr/local/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/AirBnB_clone_v2/0-hello_route.sock -m 007 0-hello_route:app
+ExecStart=/usr/local/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/AirBnB_clone_v2/web_flask/0-hello_route.sock -m 007 0-hello_route:app
 
 [Install]
 WantedBy=multi-user.target
@@ -51,7 +51,7 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/ubuntu/AirBnB_clone_v2/0-hello_route.sock;
+        proxy_pass http://unix:/home/ubuntu/AirBnB_clone_v2/web_flask/0-hello_route.sock;
     }
 }
 ```
